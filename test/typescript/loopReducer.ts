@@ -138,7 +138,7 @@ type RootState = {
 
 type RootAction = TodoActions | CounterActions;
 
-const rootReducer = combineReducers<RootState, RootAction>({
+const rootReducer = combineReducers({
   todos: todosReducer,
   counter: counterReducer
 });
@@ -148,7 +148,7 @@ const rootState: RootState = rootReducer(undefined, {
   text: 'test'
 })[0];
 
-let cmd = Cmd.run(() => {}, {
+let cmd = Cmd.run(() => 0, {
   successActionCreator: a => ({type: 'FOO', a: 2*a})
 });
 let action: AnyAction = cmd.simulate({success: true, result: 123});
